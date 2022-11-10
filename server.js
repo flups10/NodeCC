@@ -1,9 +1,16 @@
 const http = require('http')
 const fs = require('fs');
-const { defaultMaxListeners } = require('events');
+const _ = require('lodash')
 
 const server = http.createServer((req,res) => {
     
+    //lodash
+    const num = _.random(0, 20)
+    //_.once only one time for this function
+    const greed = _.once(() => console.log('hello'))
+
+    greed()
+
     res.setHeader('Content-Type', 'text/html')
 
     let path = './views/';
@@ -22,7 +29,7 @@ const server = http.createServer((req,res) => {
             res.setHeader('location', '/about')
             res.end()
             break;
-        default:
+        default:  
             path += '404.html'
             res.statusCode = 404;
             break;
